@@ -10,17 +10,31 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   margin-top: 80px;
+  background-color: #121212; /* Sötét mód a jobb hangulatért */
+  color: white;
 }
 
 button {
   font-size: 28px;
   padding: 20px 50px;
   cursor: pointer;
+  background-color: #1DB954; /* Spotify zöld */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
 }
 
 #status {
-  margin-top: 20px;
-  font-size: 18px;
+  margin-top: 30px;
+  font-size: 24px;
+  font-weight: bold;
+  height: 40px; /* Fix magasság, hogy ne ugráljon a gomb */
 }
 </style>
 </head>
@@ -35,22 +49,22 @@ button {
 
 <script>
 const songs = {
-  "001": "https://open.spotify.com/track/3Dy4REq8O09llgiwuHQ3sk?si=e89cacfdaf90447a",
-  "002": "https://open.spotify.com/track/1TfqLAPs4K3s2rJMoCokcS?si=7e33207563e54ab2",
-  "003": "https://open.spotify.com/track/6gxVngtJX6Hg7nBWcquMEW?si=8973e5317aec4924",
-  "004": "https://open.spotify.com/track/2goLsvvODILDzeeiT4dAoR?si=055471018b9e405a",
-  "005": "https://open.spotify.com/track/0M2QC4tPJmNqRhd4NfOZgz?si=45496fa8f7754dd7",
-  "006": "https://open.spotify.com/track/4r8lRYnoOGdEi6Yyl5OC1o?si=f17d988cb35043d6",
-  "007": "https://open.spotify.com/track/5Hyr47BBGpvOfcykSCcaw9?si=f17e32f056af4ec8",
-  "008": "https://open.spotify.com/track/2zYzyRzz6PrmhPzyfMEC8s?si=421073532b264932",
-  "009": "https://open.spotify.com/track/6habFhsOp2NvshLv26DqMb?si=3dd62a8b4a1d4d85",
-  "010": "https://open.spotify.com/track/6naxalmloLFWR0siv8dnQQ?si=c955faca51484e54",
-  "011": "https://open.spotify.com/track/15tHagkk8z306XkyOHqiip?si=776b70e2bcbd4b11",
-  "012": "https://open.spotify.com/track/1jDJFeK9x3OZboIAHsY9k2?si=bee2f8613f54f66",
-  "013": "https://open.spotify.com/track/64BbkK9SFKH2jk86U3dGj2P?si=d5ffdb9e7241433c",
-  "014": "https://open.spotify.com/track/2wUlYDGGXlSvm2NkGj0Qio?si=1ee0db1747ed4b50",
-  "015": "https://open.spotify.com/track/3Te8uLyit6X3ncNW8Fp3K2?si=cd7839360c2f4dcc",
-  "016": "https://open.spotify.com/track/5lWSa1rmuSL6OBPOnkAqoa?si=3c0fa40823754e48"
+  "001": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/2goLsvvODILDzeeiT4dAoR%3Fsi%3D055471018b9e405a",
+  "002": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/5Hyr47BBGpvOfcykSCcaw9%3Fsi%3Df17e32f056af4ec8",
+  "003": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/5lWSa1rmuSL6OBPOnkAqoa%3Fsi%3D3c0fa40823754e48",
+  "004": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/3Te8uLyit6X3ncNW8Fp3K2%3Fsi%3Dcd7839360c2f4dcc",
+  "005": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/15tHagkk8z306XkyOHqiip%3Fsi%3D776b70e2bcbd4b11",
+  "006": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/0M2QC4tPJmnNqRhd4NfOZg%3Fsi%3D45496fa8f7754dd7",
+  "007": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/2wUlYDGGXlSvm2NkGj0Qio%3Fsi%3D1ee0db1747ed4b50",
+  "008": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/4r8lRYnoOGdEi6Yyl5OC1o%3Fsi%3Df17d988cb35043d6",
+  "009": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/1TfqLAPs4K3s2rJMoCokcS%3Fsi%3D7e33207563e54ab2",
+  "010": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/3Dy4REq8O09llgiwuHQ3sk%3Fsi%3De89cacfdaf90447a",
+  "011": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/1jDJFeK9x3OZboIAHsY9k2%3Fsi%3Dbee2f8613534f66",
+  "012": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/6gxVngtJX6Hg7nBWcquMEW%3Fsi%3D8973e5317aec4924",
+  "013": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/64Bbk9SFKH2jk86U3dgGjP%3Fsi%3Dd5ffdb9e7241433c",
+  "014": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/2zYzyRzz6PrmhPzyfMEC8s%3Fsi%3D421073532b264932",
+  "015": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D150x150%26data%3Dhttps://open.spotify.com/track/6habFhsOp2NvshLv26DqMb%3Fsi%3D3dd62a8b4a1d4d85",
+  "016": "https://www.google.com/search?q=https://api.qrserver.com/v1/create-qr-code/%3Fsize%3D500x500%26data%3Dhttps%253A%252F%252Fopen.spotify.com%252Ftrack%252F3Dy4REq8O09llgiwHQ3sk%253Fsi%253De89cacfdaf90447a"
 };
 
 const id = new URLSearchParams(window.location.search).get("id");
@@ -61,13 +75,21 @@ function startGame() {
     return;
   }
 
-  // játék feeling
-  document.getElementById("status").innerText = "🎧 Figyelj... indul!";
+  const statusText = document.getElementById("status");
+  
+  // 1. fázis: Figyelemfelkeltés
+  statusText.innerText = "🎧 Füleket hegyezni...";
 
+  // 2. fázis: Visszaszámlálás a feszültség fokozásáért
+  setTimeout(() => { statusText.innerText = "3️⃣..."; }, 1000);
+  setTimeout(() => { statusText.innerText = "2️⃣..."; }, 2000);
+  setTimeout(() => { statusText.innerText = "1️⃣..."; }, 3000);
+  
+  // 3. fázis: Indítás!
   setTimeout(() => {
-    // Új lapon nyitja meg, így a Hitster weboldalad nyitva marad a mobilon
+    statusText.innerText = "🎶 BUMM! Mi ez a szám?";
     window.open(songs[id], "_blank");
-  }, 2000);
+  }, 4000);
 }
 </script>
 
