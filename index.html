@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hitster Spotify</title>
+<title>Hitster</title>
 
 <style>
 body {
@@ -13,35 +13,45 @@ body {
 }
 
 button {
-  font-size: 30px;
-  padding: 20px 40px;
+  font-size: 28px;
+  padding: 20px 50px;
   cursor: pointer;
+}
+
+#status {
+  margin-top: 20px;
+  font-size: 18px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🎵 Hallgasd meg a dalt</h1>
+<h1>🎵 Hitster</h1>
 
-<button onclick="playSong()">▶ LEJÁTSZÁS</button>
+<p id="status">Készen állsz a zenére?</p>
+
+<button onclick="startGame()">▶ INDÍTÁS</button>
 
 <script>
 const songs = {
   "001": "https://open.spotify.com/track/3Dy4REq8O09IlgiwuHQ3sk"
 };
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const id = new URLSearchParams(window.location.search).get("id");
 
-function playSong() {
+function startGame() {
   if (!songs[id]) {
-    alert("Nincs ilyen kártya!");
+    document.getElementById("status").innerText = "❌ Nincs ilyen kártya!";
     return;
   }
 
-  // megnyitja Spotify-t
-  window.open(songs[id], "_blank");
+  // játék feeling
+  document.getElementById("status").innerText = "🎧 Figyelj... indul!";
+
+  setTimeout(() => {
+    window.open(songs[id], "_blank");
+  }, 2000);
 }
 </script>
 
