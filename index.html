@@ -169,7 +169,7 @@ function startGame() {
   // 3. fázis: Indítás!
   setTimeout(() => {
     statusText.innerText = "🎶 BUMM! Mi ez a szám?";
-    window.open(songs[id], "_blank");
+    window.location.href = songs[id];
   }, 4000);
 }
 </script>
