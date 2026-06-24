@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <title>Hitster teszt</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hitster Spotify</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  margin-top: 80px;
+}
+
+button {
+  font-size: 30px;
+  padding: 20px 40px;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
-  <h1>🎵 Működik a GitHub Pages!</h1>
+
+<h1>🎵 Hallgasd meg a dalt</h1>
+
+<button onclick="playSong()">▶ LEJÁTSZÁS</button>
+
+<script>
+const songs = {
+  "001": "https://open.spotify.com/track/3Dy4REq8O09IlgiwuHQ3sk"
+};
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+function playSong() {
+  if (!songs[id]) {
+    alert("Nincs ilyen kártya!");
+    return;
+  }
+
+  // megnyitja Spotify-t
+  window.open(songs[id], "_blank");
+}
+</script>
+
 </body>
 </html>
