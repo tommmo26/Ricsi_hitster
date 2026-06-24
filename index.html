@@ -7,7 +7,7 @@
 
 <style>
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   text-align: center;
   margin-top: 80px;
 }
@@ -35,22 +35,22 @@ button {
 
 <script>
 const songs = {
-  "001": "https://open.spotify.com/track/3Dy4REq8O09IlgiwuHQ3sk",
-  "002": "https://open.spotify.com/track/1TfqLAPs4K3s2rJMoCokcS",
-  "003": "https://open.spotify.com/track/6gxVNgtJX6Hg7nBWcquMEW",
-  "004": "https://open.spotify.com/track/2goLsvvODILDzeeiT4dAoR",
-  "005": "https://open.spotify.com/track/0M2QC4tPJmNqRhd4NfOZgz",
-  "006": "https://open.spotify.com/track/4r8lRYnoOGdEi6YyI5OC1o",
-  "007": "https://open.spotify.com/track/5Hyr47BBGpvOfcykSCcaw9",
-  "008": "https://open.spotify.com/track/2zYzyRzz6pRmhPzyfMEC8s",
-  "009": "https://open.spotify.com/track/6habFhsOp2NvshLv26DqMb",
-  "010": "https://open.spotify.com/track/6naxalmIoLFWR0siv8dnQQ",
-  "011": "https://open.spotify.com/track/15tHagkk8z306XkyOHqiip",
-  "012": "https://open.spotify.com/track/1jDJFeK9x3OZboIAHsY9k2",
-  "013": "https://open.spotify.com/track/64BbK9SFKH2jk86U3dGj2P",
-  "014": "https://open.spotify.com/track/2wUlYDGGXlSvm2NkGj0Qio",
-  "015": "https://open.spotify.com/track/3Te8uLyit6X3ncNW8Fp3K2",
-  "016": "https://open.spotify.com/track/5lWSa1rmuSL6OBPOnkAqoa"
+  "001": "https://open.spotify.com/track/3Dy4REq8O09llgiwuHQ3sk?si=e89cacfdaf90447a",
+  "002": "https://open.spotify.com/track/1TfqLAPs4K3s2rJMoCokcS?si=7e33207563e54ab2",
+  "003": "https://open.spotify.com/track/6gxVngtJX6Hg7nBWcquMEW?si=8973e5317aec4924",
+  "004": "https://open.spotify.com/track/2goLsvvODILDzeeiT4dAoR?si=055471018b9e405a",
+  "005": "https://open.spotify.com/track/0M2QC4tPJmNqRhd4NfOZgz?si=45496fa8f7754dd7",
+  "006": "https://open.spotify.com/track/4r8lRYnoOGdEi6Yyl5OC1o?si=f17d988cb35043d6",
+  "007": "https://open.spotify.com/track/5Hyr47BBGpvOfcykSCcaw9?si=f17e32f056af4ec8",
+  "008": "https://open.spotify.com/track/2zYzyRzz6PrmhPzyfMEC8s?si=421073532b264932",
+  "009": "https://open.spotify.com/track/6habFhsOp2NvshLv26DqMb?si=3dd62a8b4a1d4d85",
+  "010": "https://open.spotify.com/track/6naxalmloLFWR0siv8dnQQ?si=c955faca51484e54",
+  "011": "https://open.spotify.com/track/15tHagkk8z306XkyOHqiip?si=776b70e2bcbd4b11",
+  "012": "https://open.spotify.com/track/1jDJFeK9x3OZboIAHsY9k2?si=bee2f8613f54f66",
+  "013": "https://open.spotify.com/track/64BbkK9SFKH2jk86U3dGj2P?si=d5ffdb9e7241433c",
+  "014": "https://open.spotify.com/track/2wUlYDGGXlSvm2NkGj0Qio?si=1ee0db1747ed4b50",
+  "015": "https://open.spotify.com/track/3Te8uLyit6X3ncNW8Fp3K2?si=cd7839360c2f4dcc",
+  "016": "https://open.spotify.com/track/5lWSa1rmuSL6OBPOnkAqoa?si=3c0fa40823754e48"
 };
 
 const id = new URLSearchParams(window.location.search).get("id");
@@ -65,7 +65,8 @@ function startGame() {
   document.getElementById("status").innerText = "🎧 Figyelj... indul!";
 
   setTimeout(() => {
-    window.location.href=(songs[id];
+    // Új lapon nyitja meg, így a Hitster weboldalad nyitva marad a mobilon
+    window.open(songs[id], "_blank");
   }, 2000);
 }
 </script>
