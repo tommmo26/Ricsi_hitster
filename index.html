@@ -50,6 +50,7 @@ button:active {
 <script>
 let songs = {};
 let loaded = false;
+let clickedBeforeLoad = false; // Figyeli, hogy kattintottak-e már
 
 // JSON betöltése
 fetch("music.json")
@@ -57,17 +58,29 @@ fetch("music.json")
   .then(data => {
     songs = data;
     loaded = true;
+    // Ha már kattintottak a betöltés alatt, most automatikusan elindítjuk
+    if (clickedBeforeLoad) {
+      startGame();
+    }
+  })
+  .catch(err => {
+    document.getElementById("status").innerText = "❌ Hiba a zenebázis betöltésekor!";
+    console.error(err);
   });
 
-// QR / URL ID
+// QR / URL ID lekérése
 const id = new URLSearchParams(window.location.search).get("id");
 
 function startGame() {
   const statusText = document.getElementById("status");
 
+  // Visszaállítjuk a színt az alapértelmezettre (ha másodszor játszik)
+  statusText.style.color = "white";
+
   // Betöltés ellenőrzés
   if (!loaded) {
-    statusText.innerText = "⏳ Betöltés...";
+    statusText.innerText = "⏳ Betöltés... Amint kész, indul!";
+    clickedBeforeLoad = true;
     return;
   }
 
@@ -80,17 +93,9 @@ function startGame() {
   // Játék indul
   statusText.innerText = "🎧 Füleket hegyezni...";
 
-  setTimeout(() => {
-    statusText.innerText = "3️⃣...";
-  }, 1000);
-
-  setTimeout(() => {
-    statusText.innerText = "2️⃣...";
-  }, 2000);
-
-  setTimeout(() => {
-    statusText.innerText = "1️⃣...";
-  }, 3000);
+  setTimeout(() => { statusText.innerText = "3️⃣..."; }, 1000);
+  setTimeout(() => { statusText.innerText = "2️⃣..."; }, 2000);
+  setTimeout(() => { statusText.innerText = "1️⃣..."; }, 3000);
 
   setTimeout(() => {
     statusText.innerText = "🎶 BUMM! Mi ez a szám?";
@@ -98,10 +103,6 @@ function startGame() {
 
     // Spotify megnyitás
     window.location.href = songs[id];
-
   }, 4000);
 }
 </script>
-
-</body>
-</html>
